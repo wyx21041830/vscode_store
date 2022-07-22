@@ -1,0 +1,29 @@
+\begin{algorithm}[h]
+    \caption{计算最小车辆数} %算法的名字
+    \hspace*{0.02in} {\bf Input:} %算法的输入， \hspace*{0.02in}用来控制位置，同时利用 \\ 进行换行
+    input parameters 站点数n,m笔订单order起点start,终点end,1~n-1段路段的权值线段树segtree1\\
+    \hspace*{0.02in} {\bf Output:} %算法的结果输出
+    output min\_car=(max\_val+1)/2 ,min\_car最小车次,max\_val最大重复路段重复次数
+    \begin{algorithmic}[1]
+    % //datastruct--权值线段树对象 优化区间修改查询效率O(n->logn)
+    \State class segtree{
+        \State struct element{
+            \State val,lazy
+        \State }node[n<<2];
+        \State function range_modify(l,r)->void  //区间修改权值(+1)
+        \State function query_max(l,r)->int   //区间查询元素最大权值
+    \State }segtree1,segtree2[max\_val];
+    \For{i=1 to m} % For 语句，需要和EndFor对应
+    \State l=order[i].start
+    \State r=order[i].end-1
+     // 站点编号->路段编号  (1,n)->(1,n-1)
+    \EndFor
+    \State less\_cnt //可减少的停车次数
+    \For{i=1 to n} % For 语句，需要和EndFor对应
+    \State less\_cnt+=min(order[i].in,order[i],out)
+        //出入尽量匹配
+    \EndFor
+    \State min\_cnt=2*m-less\_cnt;
+    \State \Return min\_cnt
+    \end{algorithmic}
+    \end{algorithm}
